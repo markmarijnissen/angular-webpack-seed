@@ -86,6 +86,9 @@ var config = {
       ENV: JSON.stringify(argv.env)
     }),
   ],
+  node: {
+    fs: "empty"  // required for jade-html-loader to work
+  },
   devServer: {
     publicPath: '/'
   },

@@ -14,7 +14,7 @@ I probably won't be maintaining this - but feel free to use and contribute.
 
 ### Install
 ```
-   git clone
+   git clone git@github.com:markmarijnissen/angular-webpack-seed.git
    npm install
    bower install
 ```

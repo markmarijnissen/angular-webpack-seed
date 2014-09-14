@@ -15,6 +15,7 @@ I probably won't be maintaining this - but feel free to use and contribute.
 ### Install
 ```
    git clone git@github.com:markmarijnissen/angular-webpack-seed.git
+   # rm -rf .git    # remove git repository (optional)
    npm install
    bower install
 ```

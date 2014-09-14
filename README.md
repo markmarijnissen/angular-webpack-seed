@@ -12,14 +12,6 @@ I probably won't be maintaining this - but feel free to use and contribute.
 * Includes UI Router
 * Hot Module Reload: Reload LESS and templates without page refresh!
 
-### Todo
-
-* Add/Fix `AngularPlugin` - automatically require AngularJS modules
-* Add test scripts
-* Use gulp to run test/clean tasks.
-* Use NPM package.json scripts to run test/clean tasks 
-* Hot Update Controllers & Directives.
-
 ### Install
 ```
    git clone
@@ -27,15 +19,15 @@ I probably won't be maintaining this - but feel free to use and contribute.
    bower install
 ```
 
+### Develop
+```
+   webpack-dev-server --hot
+```
+
 ### Build
 ```
    webpack
    webpack --minify
-```
-
-### Develop
-```
-   webpack-dev-server --hot
 ```
 
 ### Notes
@@ -48,6 +40,14 @@ This is the behind-the-scenes magic:
 * This `require.context` module is accepted when invalidated by a Hot update.
 * When accepted, the `ui-router` reloads the current state.
 * Because templates are **functions**, require is called again - and now it points to the hot updated module.
+
+### Todo
+
+* Add/Fix `AngularPlugin` - automatically require AngularJS modules
+* Add test scripts
+* Use gulp to run test/clean tasks.
+* Use NPM package.json scripts to run test/clean tasks 
+* Hot Update Controllers & Directives.
 
 ### Future: HMR for controllers & directives?
 

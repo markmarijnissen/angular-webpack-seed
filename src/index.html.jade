@@ -1,0 +1,14 @@
+doctype html
+html(ng-app="app")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible",content="IE=edge")
+    script(src="libs.bundle.js")
+    script(src="main.bundle.js")
+    title Hello World!
+  body
+    div(ui-view)
+    a(ui-sref="a") Page A
+    |  | 
+    a(ui-sref="b") Page B
+          

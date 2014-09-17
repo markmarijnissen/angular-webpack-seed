@@ -6,13 +6,8 @@ function load(){
 }
 load();
 
-module.exports = {
-  // RequireContext module ids - see 'module.hot.accept' in "app.js"
-  ids: [TemplateRequire.id,ControllerRequire.id],
-
-  // Reload function when a hot module replacement comes in.
-  reload: load,
-  
+angular.module('hot-module-replacement',['ui.router'])
+.constant('$hmr',{
   // Function to create Template Factory, using require-context to grab latest template.
   template: function(name,data){
     return function(){
@@ -26,4 +21,18 @@ module.exports = {
       return ControllerRequire('./'+name);
     };
   }
-};
+})
+
+// Accept a Hot Module Replacement by reloading state.
+.run(function($state){
+  if(module.hot){
+    module.hot.accept([TemplateRequire.id,ControllerRequire.id],function() {
+      load();
+      $state.transitionTo($state.current, $state.params, {
+          reload: true,
+          inherit: false,
+          notify: true
+      });
+    });
+  }
+});

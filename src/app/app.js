@@ -1,46 +1,28 @@
 angular.module('app',[
   'ui.router'
 ])
-.constant('require',(function(){
-  var TemplateRequire, ControllerRequire;
-  function load(){
-    TemplateRequire = require.context('./',true,/^\.\/.*\.state\.jade$/);
-    ControllerRequire = require.context('./',true,/^\.\/.*Ctrl$/);
-  }
-  load();
-  return {
-    ids: [TemplateRequire.id,ControllerRequire.id],
-    reload: load,
-    template: function(name,data){
-      return function(){
-        return TemplateRequire('./'+name+'.state.jade')(data);
-      };
-    },
-    controller: function(name){
-      return function(){
-        return ControllerRequire('./'+name);
-      };
-    }
-  };
-})())
-.config(function($stateProvider,$urlRouterProvider,require){
+.constant('hmr',require('../hmr'))
+.config(function($stateProvider,$urlRouterProvider,hmr){
+
   $urlRouterProvider.otherwise('/a');
   $stateProvider
     .state('a',{
       url: "/a",
-      template: require.template('a/a'),
-      controllerProvider: require.controller('a/ACtrl')
+      template: hmr.template('a/a'),
+      controllerProvider: hmr.controller('a/ACtrl')
     })
     .state('b',{
       url: "/b",
-      template: require.template('b/b'),
-      controllerProvider: require.controller('b/BCtrl')
+      template: hmr.template('b/b'),
+      controllerProvider: hmr.controller('b/BCtrl')
     });
 })
-.run(function($state,require){
+
+// Accept a Hot Module Replacement by reloading state.
+.run(function($state,hmr){
   if(module.hot){
-    module.hot.accept(require.ids,function() {
-      require.reload();
+    module.hot.accept(hmr.ids,function() {
+      hmr.reload();
       $state.transitionTo($state.current, $state.params, {
           reload: true,
           inherit: false,

@@ -9,6 +9,7 @@ var path = require('path');
 //--minify:  minifies output
 //--hot:     enable Hot Module Replacement
 var argv = require('optimist')
+            .default('ip','localhost')
             .alias('e','env').default('e','dev')
             .alias('m','minify')
             .argv;
@@ -30,8 +31,8 @@ var config = {
     chunkFilename: "[name].[id].js",
 
     // Hot Module Replacement settings:
-    hotUpdateMainFilename: "[hash]/update.json",
-    hotUpdateChunkFilename: "[hash]/js/[id].update.js"
+    hotUpdateMainFilename: "updates/[hash].update.json",
+    hotUpdateChunkFilename: "updates/[hash].[id].update.js"
   },
   resolve: {
       // All source is relative to 'src' directory
@@ -83,6 +84,7 @@ var config = {
     
     // Set global 'ENV' variable to support multiple builds 
     new webpack.DefinePlugin({
+      DEV_SERVER_IP: JSON.stringify(argv.ip),
       ENV: JSON.stringify(argv.env)
     }),
   ],

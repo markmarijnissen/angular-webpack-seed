@@ -1,5 +1,5 @@
 var io = require("webpack-dev-server/client/web_modules/socket.io");
-io = io.connect('http://localhost:8080');
+io = io.connect('http://'+DEV_SERVER_IP+':8080');
 
 var initial = true;
 var currentHash = "";

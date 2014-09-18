@@ -24,7 +24,7 @@
     "optimist": "^0.6.1",
     "style-loader": "^0.8.0",
     "url-loader": "^0.5.5",
-    "webpack": "^1.4.0-beta10",
+    "webpack": "git://github.com/webpack/webpack.git#ceab046070dca2bc6aaa45a4737ca971f56efc83",
     "webpack-dev-server": "^1.6.4"
   }
 }

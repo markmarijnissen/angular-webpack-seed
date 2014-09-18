@@ -31,8 +31,10 @@ I probably won't be maintaining this - but feel free to use and contribute.
 
 ### Develop
 ```
-   webpack-dev-server --hot
+   webpack-dev-server --hot --ip=192.168.1.10
 ```
+
+The `--ip` defaults to `localhost` and is only required if you want to access the website from another device or computer (on the same network).
 
 ### Build
 ```
